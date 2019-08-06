@@ -1,0 +1,24 @@
+input RegisterInput {
+  email: EmailAddress!
+  name: String!
+  password: String!
+}
+
+input LoginInput {
+  email: EmailAddress!
+  password: String!
+}
+
+type AuthPayload {
+  formErrors: [FormError!]
+  user: User
+}
+
+type Mutation {
+  register(input: RegisterInput!): AuthPayload!
+  login(input: LoginInput!): AuthPayload!
+}
+
+type Query {
+  me: User
+}

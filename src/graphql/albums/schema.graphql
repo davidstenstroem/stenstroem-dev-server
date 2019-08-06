@@ -1,0 +1,14 @@
+type MediaStream {
+  cover: String!
+  mediaCount: Int!
+}
+
+type MyAlbums {
+  stream: MediaStream!
+  albums: [AlbumCover!]!
+}
+
+type Query {
+  myAlbums: MyAlbums!
+  sharedAlbums: [AlbumCover!]!
+}

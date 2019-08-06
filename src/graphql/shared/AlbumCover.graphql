@@ -1,0 +1,10 @@
+type AlbumCover {
+  id: String!
+  mediaCount: Int!
+  slug: String!
+  title: String!
+  cover: String!
+  owner: User!
+  isPrivate: Boolean!
+  sharedWith: [String!]
+}
