@@ -85,6 +85,14 @@ export type Query = {
   me?: Maybe<User>
 }
 
+export type QueryMyAlbumsArgs = {
+  limit?: Maybe<Scalars['Int']>
+}
+
+export type QuerySharedAlbumsArgs = {
+  limit?: Maybe<Scalars['Int']>
+}
+
 export type RegisterInput = {
   email: Scalars['EmailAddress']
   name: Scalars['String']
@@ -172,10 +180,10 @@ export type DirectiveResolverFn<
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>
+  Int: ResolverTypeWrapper<Scalars['Int']>
   MyAlbums: ResolverTypeWrapper<MyAlbums>
   MediaStream: ResolverTypeWrapper<MediaStream>
   String: ResolverTypeWrapper<Scalars['String']>
-  Int: ResolverTypeWrapper<Scalars['Int']>
   AlbumCover: ResolverTypeWrapper<AlbumCover>
   User: ResolverTypeWrapper<User>
   EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>
@@ -191,10 +199,10 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {}
+  Int: Scalars['Int']
   MyAlbums: MyAlbums
   MediaStream: MediaStream
   String: Scalars['String']
-  Int: Scalars['Int']
   AlbumCover: AlbumCover
   User: User
   EmailAddress: Scalars['EmailAddress']
@@ -297,11 +305,17 @@ export type QueryResolvers<
   ContextType = Context,
   ParentType = ResolversParentTypes['Query']
 > = {
-  myAlbums?: Resolver<ResolversTypes['MyAlbums'], ParentType, ContextType>
+  myAlbums?: Resolver<
+    ResolversTypes['MyAlbums'],
+    ParentType,
+    ContextType,
+    QueryMyAlbumsArgs
+  >
   sharedAlbums?: Resolver<
     Array<ResolversTypes['AlbumCover']>,
     ParentType,
-    ContextType
+    ContextType,
+    QuerySharedAlbumsArgs
   >
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>
 }
