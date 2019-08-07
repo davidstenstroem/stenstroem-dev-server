@@ -9,6 +9,6 @@ type MyAlbums {
 }
 
 type Query {
-  myAlbums: MyAlbums!
-  sharedAlbums: [AlbumCover!]!
+  myAlbums(limit: Int): MyAlbums!
+  sharedAlbums(limit: Int): [AlbumCover!]!
 }
